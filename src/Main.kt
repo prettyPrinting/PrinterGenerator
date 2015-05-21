@@ -10,6 +10,7 @@ val importList = "testData/generators/input/import.txt"
 
 fun main(args: Array<String>) {
     generateComponents("testData/generators/input/TestFolder/", "testData/generators/output/")
+    generatePrinterFiles("testData/generators/input/", "testData/generators/output/")
 }
 
 fun generateComponents(inputPath: String, outputPath: String) {
@@ -21,6 +22,15 @@ fun generateComponents(inputPath: String, outputPath: String) {
             File(outputPath + file.getName().replaceAfterLast(".", "kt")).writeText(parser.readXml(file.getPath()).toString())
         }
     }
+}
+fun generatePrinterFiles(inputPath: String, outputPath: String) {
+    val parser: PrinterFilesParser = PrinterFilesParser()
+    val printerFiles = parser.readXml(inputPath + "printer.xml")
+    File(outputPath + "Printer.kt").writeText(printerFiles.toString())
+    File(outputPath + "template.kt").writeText(printerFiles?.getFileTemplate() ?: "")
+    File(outputPath + "FullConstructionUtils.kt").writeText(printerFiles?.getFullConstructionUtils() ?: "")
+    File(outputPath + "PsiElementComponent.kt").writeText(printerFiles?.getPsiElementComponent() ?: "")
+    File(outputPath + "FormatListFillUtils.kt").writeText(printerFiles?.getFormatListFillUtils() ?: "")
 }
 fun runGenerator() {
     val path = "testData/generators/input/if.xml"
