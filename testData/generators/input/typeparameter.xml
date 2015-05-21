@@ -1,0 +1,10 @@
+<component name="TypeParameter" psiComponentClass="PsiTypeParameter" createFromText="TypeParameter">
+    <subtree name="name_identifier"   psiGetMethod="NameIdentifier"
+             isCodeBlock="false" isRequired="false" />
+    <subtree name="extends_list"      psiGetMethod="ExtendsList" isEverywhereSuit="true"
+             isCodeBlock="false" isRequired="true" />
+    <subtree name="annotation"        psiGetMethod="Annotations" isEverywhereSuit="true"
+             isCodeBlock="false" isRequired="false">
+        <getCode hasSeveralElements="true" foldFunction="r, e -> r - e" />
+    </subtree>
+</component>

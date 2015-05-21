@@ -1,0 +1,8 @@
+<component name="If" psiComponentClass="PsiIfStatement" createFromText="Statement">
+    <subtree name="then"        psiGetMethod="ThenBranch"
+             isCodeBlock="true"     isRequired="true" />
+    <subtree name="else"        psiGetMethod="ElseBranch"
+             isCodeBlock="true"     isRequired="false" />
+    <subtree name="condition"   psiGetMethod="Condition"
+             isCodeBlock="false"    isRequired="true" />
+    </component>

@@ -1,0 +1,3 @@
+val @NAME@ = p.get@SUBTREE_GET@()
+if (@NAME@ == null) { return printer.getEmptySet() }
+return printer.getVariants(@NAME@, context)

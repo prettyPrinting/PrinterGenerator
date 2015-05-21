@@ -1,0 +1,31 @@
+<component name="AnonymousClass" psiComponentClass="PsiAnonymousClass"
+        predecessors=", ClassBodyOwner&lt;PsiAnonymousClass, SmartInsertPlace, PsiTemplateGen&lt;PsiAnonymousClass, SmartInsertPlace&gt;&gt;"
+        specificImport="import org.jetbrains.likePrinter.components.classes.ClassBodyOwner
+&#xD;&#xA;import com.intellij.psi.PsiNewExpression
+&#xD;&#xA;import com.intellij.psi.PsiEnumConstantInitializer">
+
+    <subtree name="base_class_reference"   psiGetMethod="BaseClassReference"
+             isCodeBlock="false" isRequired="false" />
+    <subtree name="modifier_list"          psiGetMethod="ModifierList"
+             isCodeBlock="false" isRequired="false" />
+    <subtree name="type_parameter_list"    psiGetMethod="TypeParameterList"
+             isCodeBlock="false" isRequired="false" />
+    <subtree name="argument_list"          psiGetMethod="ArgumentList"
+             isCodeBlock="false" isRequired="false" />
+
+    <getNewElement specificCode="val expressionText = &quot;new\n$text&quot;
+&#xD;&#xA;val newExpression = elementFactory.createExpressionFromText(expressionText, null)
+&#xD;&#xA;if (newExpression !is PsiNewExpression) { return null }
+&#xD;&#xA;val newP = newExpression.getAnonymousClass()
+&#xD;&#xA;return newP" />
+
+    <isTemplSuit specificCode="if (p is PsiEnumConstantInitializer) { return false }
+&#xD;&#xA;val argumentList = p.getArgumentList()
+&#xD;&#xA;return hasElement(argumentList) == (tmplt.insertPlaceMap.get(ARGUMENT_LIST_TAG) != null)" />
+
+    <getTemplate specificCode="addClassBodyToInsertPlaceMap   (newP, insertPlaceMap)" />
+
+    <prepareSubtrees specificCode="prepareBodyVariants(p, variants, context)" />
+
+    <getTags specificCode="set.add(CLASS_BODY_TAG)" />
+</component>

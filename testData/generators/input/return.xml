@@ -1,0 +1,6 @@
+<component name="Return" psiComponentClass="PsiReturnStatement" createFromText="Statement">
+    <isTemplSuit specificCode="val text = p.getText() ?: &quot;&quot;
+     &#xD;&#xA;return text.endsWith(';') == tmplt.text.endsWith(';')" />
+    <subtree name="value" psiGetMethod="ReturnValue" isEverywhereSuit="true"
+            isCodeBlock="false" isRequired="false" />
+</component>

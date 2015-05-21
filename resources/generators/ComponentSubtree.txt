@@ -1,0 +1,23 @@
+private fun add@NAME_CC@ToInsertPlaceMap(
+        p: @COMP_CLASS@
+        , insertPlaceMap: MutableMap<String, SmartInsertPlace>
+        , delta: Int
+): Boolean {
+    @ADD_SUBTREE@
+}
+
+private fun prepare@NAME_CC@Variants(
+        p: @COMP_CLASS@
+        , variants: MutableMap<String, FormatSet>
+        , context: VariantConstructionContext
+) {
+    @PREP_SUBTREE@
+}
+
+private fun get@NAME_CC@Variants(
+        p: @COMP_CLASS@
+        , context: VariantConstructionContext
+): FormatSet {
+    @GET_SUBTREE@
+}
+

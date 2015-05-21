@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="format">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/format.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,12 @@
+override public fun getTemplateFromElement(newP: @COMP_CLASS@): PsiTemplateGen<@COMP_CLASS@, SmartInsertPlace>? {
+    val insertPlaceMap = HashMap<String, SmartInsertPlace>()
+    val negShift = -newP.getCorrectTextOffset()
+
+    val text = newP.getText() ?: ""
+
+    @ADD_SUBTREES@
+    @SPECIFIC_CODE@
+
+    val contentRelation = getContentRelation(newP.getText() ?: "", insertPlaceMap)
+    return PsiTemplateGen(newP, insertPlaceMap, contentRelation.first, contentRelation.second)
+}

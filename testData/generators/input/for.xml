@@ -1,0 +1,10 @@
+<component name="For" psiComponentClass="PsiForStatement" createFromText="Statement">
+    <subtree name="condition"       psiGetMethod="Condition"
+             isCodeBlock="false"     isRequired="false" />
+    <subtree name="initialization"  psiGetMethod="Initialization"
+             isCodeBlock="false"     isRequired="false" />
+    <subtree name="update"          psiGetMethod="Update"
+             isCodeBlock="false"     isRequired="false" />
+    <subtree name="body"            psiGetMethod="Body"
+             isCodeBlock="true"      isRequired="false" />
+</component>

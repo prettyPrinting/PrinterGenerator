@@ -1,0 +1,11 @@
+override protected fun prepareSubtreeVariants(
+        p: @COMP_CLASS@
+        , context: VariantConstructionContext
+): Map<String, FormatSet> {
+    val variants = HashMap<String, FormatSet>()
+
+    @PREP_SUBTREES@
+    @SPECIFIC_CODE@
+
+    return variants
+}

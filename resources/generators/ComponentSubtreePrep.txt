@@ -1,0 +1,3 @@
+val @NAME@Variants = get@NAME_CC@Variants(p, context)
+if (@NAME@Variants.isEmpty()) { return }
+variants.put(@NAME_CAP@_TAG, @NAME@Variants)

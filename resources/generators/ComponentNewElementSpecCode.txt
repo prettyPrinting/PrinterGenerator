@@ -1,0 +1,6 @@
+override protected fun getNewElement(
+        text: String
+        , elementFactory: @ELEMENT_FACTORY@
+): @COMP_CLASS@? {
+    @SPECIFIC_CODE@
+}

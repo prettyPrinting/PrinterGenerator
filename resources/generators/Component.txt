@@ -1,0 +1,28 @@
+package org.jetbrains.likePrinter.components
+
+@IMPORT_LIST@
+import @COMP_PACKAGE@.@COMP_CLASS@
+@SPECIFIC_IMPORT@
+
+public class @NAME_CC@Component(
+        printer: Printer
+): PsiElementComponent<@COMP_CLASS@, SmartInsertPlace, PsiTemplateGen<@COMP_CLASS@, SmartInsertPlace>>(printer)
+   @PREDECESSORS@
+{
+
+    @DECL_TAGS@
+    @GEN_SUBTREES@
+    @GET_NEW_ELEM@
+
+    @UPDATE_SUBTREES@
+
+    @PREPARE_SUBTREES@
+
+    @GET_TAGS@
+
+    @IS_TEMPL_SUIT@
+
+    @GET_TEMPLATE@
+
+    @SPECIFIC_CODE@
+}

@@ -1,0 +1,8 @@
+override protected fun getTags(p: @COMP_CLASS@): Set<String> {
+    val set = HashSet<String>()
+
+    @GET_TAGS@
+    @SPECIFIC_CODE@
+
+    return set
+}
