@@ -8,6 +8,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="KotlinJavaRuntime" level="project" />
-    <orderEntry type="library" exported="" name="format" level="project" />
+    <orderEntry type="library" name="format" level="project" />
   </component>
 </module>

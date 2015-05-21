@@ -7,7 +7,7 @@ import org.jetbrains.format.*
  * Created by Aleksei on 3/5/2015.
  */
 public class Component (
-        val name                : String
+          val name                : String
         , val compPackage       : String
         , val psiComponentClass : String
         , val predecessors      : String?
