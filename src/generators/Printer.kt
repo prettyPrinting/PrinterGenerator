@@ -7,6 +7,7 @@ import java.io.File
  */
 public class Printer (
         val factory           : String?
+        , val factoryPack     : String?
         , val specificImport  : String?
         , val fileClassName   : String?
         , val filePsiClass    : String?
@@ -14,6 +15,21 @@ public class Printer (
         , val components      : List<ComponentData>
 )
 {
+    fun getFullConstructionUtils() = File("resources/generators/FullConstructionUtils.txt").readText()
+    fun getFormatListFillUtils() = File("resources/generators/FormatListFillUtils.txt").readText()
+    fun getFileTemplate() = File("resources/generators/template.txt").readText()
+
+    fun getPsiElementComponent(): String {
+        val PsiElementComponentTemplate = File("resources/generators/PsiElementComponent.txt").readText()
+
+        val parametersList = listOf(
+                Pair("@FACTORY@"                , factory ?: ""                        ),
+                Pair("@FACTORY_PACK@"           , factoryPack ?: ""                    )
+        )
+
+        return PsiElementComponentTemplate.replaceAllInsertPlace(parametersList)
+    }
+
     override public fun toString(): String {
 
         val componentCodeTemplate = File("resources/generators/Printer.txt").readText()
@@ -21,7 +37,7 @@ public class Printer (
         val compDecl = {
             (acc: String, component: ComponentData) ->
             acc +
-             "public val ${component.name}: ${component.name?.capitalize()} = ${component.name?.capitalize()}(this)\n"
+                    "public val ${component.name}: ${component.name?.capitalize()} = ${component.name?.capitalize()}(this)\n"
         }
 
         val applyTempl = {
@@ -54,10 +70,12 @@ public class Printer (
                 Pair("@GET_VARIANTS@"           , components.fold("", getVariants)     ),
                 Pair("@GET_SAVE_TEMPLATE@"      , components.fold("", getSaveVariants) ),
                 Pair("@FACTORY@"                , factory ?: ""                        ),
+                Pair("@FACTORY_PACK@"           , factoryPack ?: ""                    ),
                 Pair("@CREATE_FROM_TEXT@"       , components.fold("", fromText)        ),
                 Pair("@DEFAULT_FROM_TEXT@"      , defaultFromText ?: ""                )
         )
 
         return componentCodeTemplate.replaceAllInsertPlace(parametersList)
     }
+
 }

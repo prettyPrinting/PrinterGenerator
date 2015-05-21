@@ -1,4 +1,4 @@
-<printer factory="JavaPsiFacade.getElementFactory" specificImport="" defaultFromText="createStatementFromText">
+<printer factoryPack = "com.intellij.psi.PsiElementFactory" factory="JavaPsiFacade.getElementFactory" specificImport="" defaultFromText="createStatementFromText">
     <file fileClassName="javaFileComponent" filePsiClass="PsiJavaFile"/>
     <component name="ifComponent" psiClass="PsiIfStatement" fromText=""/>
     <component name="whileComponent" psiClass="PsiWhileStatement" fromText=""/>

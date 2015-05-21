@@ -18,6 +18,7 @@ data class ComponentData(val name : String?, val psiClass : String?, val fromTex
 public class PrinterFilesParser() {
 
     var factory            : String? = null
+    var factoryPack        : String? = null
     var specificImport     : String? = null
     var fileClassName      : String? = null
     var filePsiClass       : String? = null
@@ -25,6 +26,7 @@ public class PrinterFilesParser() {
 
     private fun clean() {
         factory            = null
+        factoryPack        = null
         specificImport     = null
         fileClassName      = null
         filePsiClass       = null
@@ -50,6 +52,7 @@ public class PrinterFilesParser() {
                         val value = attribute.getValue()
                         when (attribute.getName().toString()) {
                             "factory"           -> factory = value
+                            "factoryPack"       -> factoryPack = value
                             "specificImport"    -> specificImport = value
                             "defaultFromText"   -> defaultFromText = value
                         }
@@ -94,6 +97,7 @@ public class PrinterFilesParser() {
                 if (endElement.getName().getLocalPart() != "printer") { continue }
                 return Printer(
                         factory
+                        , factoryPack
                         , specificImport
                         , fileClassName
                         , filePsiClass
