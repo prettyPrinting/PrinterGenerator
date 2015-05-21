@@ -1,0 +1,6 @@
+<component name="StmtList" psiComponentClass="PsiStmtList" createFromText="StmtList">
+    <subtree name="list"      psiGetMethod="StmtList" isEverywhereSuit="true"
+             isCodeBlock="false"     isRequired="true"  hasSeveralElements="true">
+        <getCode foldFunction="r, e -> r - e" />
+    </subtree>
+</component>

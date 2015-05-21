@@ -1,4 +1,4 @@
-package org.jetbrains.likePrinter.components
+package com.intellij;
 
 @IMPORT_LIST@
 import @COMP_PACKAGE@.@COMP_CLASS@

@@ -38,14 +38,14 @@ import org.jetbrains.format.FormatMap2D_LL
 import org.jetbrains.format.FormatMap1D
 import org.jetbrains.format.FormatList
 import org.jetbrains.likePrinter.performUndoWrite
-@SPECIFIC_IMPORT@
+
 
 class Printer(
-  templateFile: @FILE_CLASS@?
+  templateFile: WhileFile?
 , private val settings: PrinterSettings
 ): Memoization(), CommentConnectionUtils {
     companion object {
-        public fun create(templateFile: @FILE_CLASS@?, project: Project, width: Int): Printer =
+        public fun create(templateFile: WhileFile?, project: Project, width: Int): Printer =
                 Printer(templateFile, PrinterSettings.createProjectSettings(width, project))
     }
 
@@ -78,10 +78,22 @@ class Printer(
 
     //WARNING: must be declared before init!!!
     //COMPONENTS
-    @COMP_DECLARATIONS@
-    public val @FILE_COMP_PASC@: @FILE_COMP@ = @FILE_COMP@(this)
+    public val AssignStmtComponent: AssignStmtComponent = AssignStmtComponent(this)
+    public val IfStmtComponent: IfStmtComponent = IfStmtComponent(this)
+    public val ReadStmtComponent: ReadStmtComponent = ReadStmtComponent(this)
+    public val SkipStmtComponent: SkipStmtComponent = SkipStmtComponent(this)
+    public val WhileStmtComponent: WhileStmtComponent = WhileStmtComponent(this)
+    public val StmtListComponent: StmtListComponent = StmtListComponent(this)
+    public val WriteStmtComponent: WriteStmtComponent = WriteStmtComponent(this)
+    public val BinaryExprComponent: BinaryExprComponent = BinaryExprComponent(this)
+    public val ParenExprComponent: ParenExprComponent = ParenExprComponent(this)
+    public val BinaryBexprComponent: BinaryBexprComponent = BinaryBexprComponent(this)
+    public val ParenBexprComponent: ParenBexprComponent = ParenBexprComponent(this)
+    public val NotBexprComponent: NotBexprComponent = NotBexprComponent(this)
+    
+    public val WhileFileComponent: WhileFileComponent = WhileFileComponent(this)
 
-    public fun reprint(mFile: @FILE_CLASS@) { reprintElementWithChildren(mFile) }
+    public fun reprint(mFile: WhileFile) { reprintElementWithChildren(mFile) }
 
     init {
         if (templateFile != null) {
@@ -92,17 +104,29 @@ class Printer(
     /// public only for testing purposes!!!
     public fun reprintElementWithChildren(psiElement: PsiElement) {
         reprintElementWithChildren_AllMeaningful(psiElement) // variant for partial template
-//        reprintElementWithChildren_Only@FILE_CLASS@(psiElement) // variant for situations with full template
+//        reprintElementWithChildren_OnlyWhileFile(psiElement) // variant for situations with full template
     }
 
-    private fun reprintElementWithChildren_Only@FILE_CLASS@(psiElement: PsiElement) {
-        walker(psiElement) { p -> if (p is @FILE_CLASS@) applyTmplt(p) }
+    private fun reprintElementWithChildren_OnlyWhileFile(psiElement: PsiElement) {
+        walker(psiElement) { p -> if (p is WhileFile) applyTmplt(p) }
     }
 
     private fun reprintElementWithChildren_AllMeaningful(psiElement: PsiElement) {
         walker(psiElement) { p ->
             when (p) {
-                @APPLY_TEMPLATE@
+                is PsiAssignStmt -> applyTmplt(p)
+                is PsiIfStmt -> applyTmplt(p)
+                is PsiReadStmt -> applyTmplt(p)
+                is PsiSkipStmt -> applyTmplt(p)
+                is PsiWhileStmt -> applyTmplt(p)
+                is PsiStmtList -> applyTmplt(p)
+                is PsiWriteStmt -> applyTmplt(p)
+                is PsiBinaryExpr -> applyTmplt(p)
+                is PsiParenExpr -> applyTmplt(p)
+                is PsiBinaryBexpr -> applyTmplt(p)
+                is PsiParenBexpr -> applyTmplt(p)
+                is PsiNotBexpr -> applyTmplt(p)
+                
                 else -> 5 + 5
             }
         }
@@ -146,8 +170,20 @@ class Printer(
     private fun getTemplateVariants(p: PsiElement, context: VariantConstructionContext): FormatSet {
         val variants: FormatSet =
             when(p) {
-                @GET_VARIANTS@
-                is @FILE_CLASS@                    ->                    @FILE_COMP_PASC@.getVariants(p, context)
+                is PsiAssignStmt -> AssignStmtComponent.getVariants(p, context)
+                is PsiIfStmt -> IfStmtComponent.getVariants(p, context)
+                is PsiReadStmt -> ReadStmtComponent.getVariants(p, context)
+                is PsiSkipStmt -> SkipStmtComponent.getVariants(p, context)
+                is PsiWhileStmt -> WhileStmtComponent.getVariants(p, context)
+                is PsiStmtList -> StmtListComponent.getVariants(p, context)
+                is PsiWriteStmt -> WriteStmtComponent.getVariants(p, context)
+                is PsiBinaryExpr -> BinaryExprComponent.getVariants(p, context)
+                is PsiParenExpr -> ParenExprComponent.getVariants(p, context)
+                is PsiBinaryBexpr -> BinaryBexprComponent.getVariants(p, context)
+                is PsiParenBexpr -> ParenBexprComponent.getVariants(p, context)
+                is PsiNotBexpr -> NotBexprComponent.getVariants(p, context)
+                
+                is WhileFile                    ->                    WhileFileComponent.getVariants(p, context)
 
                 //Just cut from text
                 else -> {
@@ -162,18 +198,30 @@ class Printer(
     public  fun areTemplatesFilled(): Boolean = areTemplatesFilled
     private var areTemplatesFilled  : Boolean = false
 
-    public fun fillTemplateLists(templateFile: @FILE_CLASS@) {
+    public fun fillTemplateLists(templateFile: WhileFile) {
         areTemplatesFilled = true
         walker(templateFile, { p: PsiElement ->
             when (p) {
-                @GET_SAVE_TEMPLATE@
+                is PsiAssignStmt -> AssignStmtComponent.getAndSaveTemplate(p)
+                is PsiIfStmt -> IfStmtComponent.getAndSaveTemplate(p)
+                is PsiReadStmt -> ReadStmtComponent.getAndSaveTemplate(p)
+                is PsiSkipStmt -> SkipStmtComponent.getAndSaveTemplate(p)
+                is PsiWhileStmt -> WhileStmtComponent.getAndSaveTemplate(p)
+                is PsiStmtList -> StmtListComponent.getAndSaveTemplate(p)
+                is PsiWriteStmt -> WriteStmtComponent.getAndSaveTemplate(p)
+                is PsiBinaryExpr -> BinaryExprComponent.getAndSaveTemplate(p)
+                is PsiParenExpr -> ParenExprComponent.getAndSaveTemplate(p)
+                is PsiBinaryBexpr -> BinaryBexprComponent.getAndSaveTemplate(p)
+                is PsiParenBexpr -> ParenBexprComponent.getAndSaveTemplate(p)
+                is PsiNotBexpr -> NotBexprComponent.getAndSaveTemplate(p)
+                
                 else -> 5 + 5
             }
         })
     }
 
     private fun createElementFromText(p: PsiElement, text: String): PsiElement? {
-        val factory = @FACTORY@(getProject())
+        val factory = WhileElementFactory(getProject())
         if (factory == null) { return null }
 
         when (p) {
@@ -202,7 +250,7 @@ class Printer(
 
 
             is PsiExpression -> return factory.createExpressionFromText(text, null)
-            else -> return factory.@DEFAULT_FROM_TEXT@(text, null)
+            else -> return factory.createStatementFromText(text, null)
         }
     }
 
@@ -221,7 +269,7 @@ class Printer(
         val startLineOffset = p.getOffsetInStartLine()
         val newElementText = chosenFormat.toText(startLineOffset, "")
 
-        if (p is @FILE_CLASS@) {
+        if (p is WhileFile) {
             val document = PsiDocumentManager.getInstance(getProject())?.getDocument(p)
             val oldDocSize = document?.getText()?.size
             if (document == null || oldDocSize == null) { return }

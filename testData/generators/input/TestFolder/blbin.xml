@@ -1,0 +1,8 @@
+<component name="BinaryBexpr" psiComponentClass="PsiBinaryBexpr" createFromText="BinaryBexpr">
+    <subtree name="leftOp" psiGetMethod="Left" isEverywhereSuit="true"
+             isCodeBlock="false" isRequired="true" />
+    <subtree name="rightOp" psiGetMethod="Right" isEverywhereSuit="true"
+             isCodeBlock="false" isRequired="true" />
+    <subtree name="operation" psiGetMethod="BlOp" isEverywhereSuit="true"
+             isCodeBlock="false" isRequired="true" />
+</component>

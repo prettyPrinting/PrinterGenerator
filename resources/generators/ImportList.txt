@@ -1,18 +1,6 @@
-import org.jetbrains.likePrinter.printer.Printer
-import org.jetbrains.likePrinter.templateBase.template.SmartInsertPlace
-import org.jetbrains.likePrinter.templateBase.template.PsiTemplateGen
-import org.jetbrains.likePrinter.util.psiElement.getTextRange
-import java.util.HashMap
-import org.jetbrains.likePrinter.util.psiElement.toSmartInsertPlace
-import org.jetbrains.likePrinter.printer.CommentConnectionUtils.VariantConstructionContext
-
-import org.jetbrains.likePrinter.util.psiElement.getCorrectTextOffset
-import java.util.HashSet
+import com.intellij.whileLang.Printer
 import org.jetbrains.format.FormatSet
-import org.jetbrains.likePrinter.util.string.getFillConstant
-import org.jetbrains.likePrinter.util.box.Box
-import org.jetbrains.likePrinter.templateBase.template.PsiElementComponent
-import com.intellij.psi.PsiElementFactory
-import org.jetbrains.likePrinter.util.psiElement.toBox
-import com.intellij.util.IncorrectOperationException
-import org.jetbrains.likePrinter.util.psiElement.*
+import java.util.HashMap
+import java.util.HashSet
+import com.intellij.CommentConnectionUtils.VariantConstructionContext
+import com.intellij.whileLang.WhileElementFactory

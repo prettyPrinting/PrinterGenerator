@@ -1,0 +1,6 @@
+<component name="WhileStmt" psiComponentClass="PsiWhileStmt" createFromText="WhileStmt">
+    <subtree name="condition"       psiGetMethod="Bexpr"
+             isCodeBlock="false"     isRequired="true" />
+    <subtree name="stmtList"       psiGetMethod="StmtList"
+             isCodeBlock="false"     isRequired="true" />
+</component>

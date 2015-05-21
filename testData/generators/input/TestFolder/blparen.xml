@@ -1,0 +1,4 @@
+<component name="ParenBexpr" psiComponentClass="PsiParenBexpr" createFromText="ParenBexpr">
+    <subtree name="bexpr" psiGetMethod="Bexpr" isEverywhereSuit="true"
+             isCodeBlock="false" isRequired="true" />
+</component>

@@ -3,7 +3,7 @@ override protected fun getNewElement(
         , elementFactory: @ELEMENT_FACTORY@
 ): @COMP_CLASS@? {
     try {
-        val newP = elementFactory.create@FROM_TEXT@FromText(text, null)
+        val newP = elementFactory.create@FROM_TEXT@FromText(text)
         return newP as? @COMP_CLASS@
     } catch (e: Exception) {
         return null

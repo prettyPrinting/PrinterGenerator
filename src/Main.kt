@@ -16,7 +16,7 @@ fun main(args: Array<String>) {
 fun generateComponents(inputPath: String, outputPath: String) {
     val folder : File = File(inputPath);
     val listOfFiles : Array<File> = folder.listFiles();
-    val parser: StaXParser = StaXParser(importList, "com.intellij.psi", "PsiElementFactory")
+    val parser: StaXParser = StaXParser(importList, "com.intellij.whileLang.psi.impl", "WhileElementFactory")
     for (file in listOfFiles) {
         if (file.isFile()) {
             File(outputPath + file.getName().replaceAfterLast(".", "kt")).writeText(parser.readXml(file.getPath()).toString())

@@ -1,0 +1,4 @@
+<component name="WriteStmt" psiComponentClass="PsiWriteStmt" createFromText="WriteStmt">
+    <subtree name="expr"         psiGetMethod="Expr"
+             isCodeBlock="false" isRequired="true" />
+</component>

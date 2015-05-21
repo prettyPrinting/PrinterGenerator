@@ -1,0 +1,8 @@
+<component name="IfStmt" psiComponentClass="PsiIfStmt" createFromText="IfStmt">
+    <subtree name="then"        psiGetMethod="ThenBranch"
+             isCodeBlock="false"     isRequired="true" />
+    <subtree name="else_branch"        psiGetMethod="ElseBranch"
+             isCodeBlock="false"     isRequired="false" />
+    <subtree name="condition"   psiGetMethod="Bexpr"
+             isCodeBlock="false"    isRequired="true" />
+</component>

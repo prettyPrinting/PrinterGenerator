@@ -1,4 +1,4 @@
-package org.jetbrains
+package com.intellij;
 
 import com.intellij.openapi.util.TextRange
 import org.jetbrains.likePrinter.util.base.*

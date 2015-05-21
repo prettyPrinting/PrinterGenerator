@@ -23,8 +23,8 @@ public class Printer (
         val PsiElementComponentTemplate = File("resources/generators/PsiElementComponent.txt").readText()
 
         val parametersList = listOf(
-                Pair("@FACTORY@"                , factory ?: ""                        ),
-                Pair("@FACTORY_PACK@"           , factoryPack ?: ""                    )
+                Pair("@FACTORY_NAME@"                , factory ?: ""                        ),
+                Pair("@FACTORY_PACKAGE@"           , factoryPack ?: ""                    )
         )
 
         return PsiElementComponentTemplate.replaceAllInsertPlace(parametersList)
@@ -70,7 +70,7 @@ public class Printer (
                 Pair("@GET_VARIANTS@"           , components.fold("", getVariants)     ),
                 Pair("@GET_SAVE_TEMPLATE@"      , components.fold("", getSaveVariants) ),
                 Pair("@FACTORY@"                , factory ?: ""                        ),
-                Pair("@FACTORY_PACK@"           , factoryPack ?: ""                    ),
+                Pair("@FACTORY_PACKAGE@"           , factoryPack ?: ""                    ),
                 Pair("@CREATE_FROM_TEXT@"       , components.fold("", fromText)        ),
                 Pair("@DEFAULT_FROM_TEXT@"      , defaultFromText ?: ""                )
         )

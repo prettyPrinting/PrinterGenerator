@@ -1,7 +1,0 @@
-<component name="Assert" psiComponentClass="PsiAssertStatement" createFromText="Statement">
-    <isTemplSuit specificCode="return (p.getAssertDescription() != null) == (tmplt.psi.getAssertDescription() != null)" />
-    <subtree name="condition"   psiGetMethod="AssertCondition"
-             isCodeBlock="false" isRequired="true" />
-    <subtree name="description" psiGetMethod="AssertDescription"
-             isCodeBlock="false" isRequired="true" />
-</component>
