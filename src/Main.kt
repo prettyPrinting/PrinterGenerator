@@ -9,9 +9,19 @@ import java.io.File
 val importList = "testData/generators/input/import.txt"
 
 fun main(args: Array<String>) {
-    runGenerator()
+    generateComponents("testData/generators/input/TestFolder/", "testData/generators/output/")
 }
 
+fun generateComponents(inputPath: String, outputPath: String) {
+    val folder : File = File(inputPath);
+    val listOfFiles : Array<File> = folder.listFiles();
+    val parser: StaXParser = StaXParser(importList, "com.intellij.psi", "PsiElementFactory")
+    for (file in listOfFiles) {
+        if (file.isFile()) {
+            File(outputPath + file.getName().replaceAfterLast(".", "kt")).writeText(parser.readXml(file.getPath()).toString())
+        }
+    }
+}
 fun runGenerator() {
     val path = "testData/generators/input/if.xml"
     val parser: StaXParser = StaXParser(importList, "com.intellij.psi", "PsiElementFactory")
