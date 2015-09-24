@@ -2,13 +2,13 @@ package org.jetbrains.PrinterGenerator.generators
 
 import java.io.File
 import org.jetbrains.format.*
+import org.jetbrains.generators.LanguageInfo
 
 /**
  * Created by Aleksei on 3/5/2015.
  */
 public class Component (
-          val name                : String
-        , val compPackage       : String
+          val name              : String
         , val psiComponentClass : String
         , val predecessors      : String?
         , val specificImport    : String?
@@ -27,12 +27,12 @@ public class Component (
         val componentCodeTemplate = File("resources/generators/Component.txt").readText()
 
         val declTags = {
-            (acc: String, subtree: ComponentSubtree) ->
+            acc: String, subtree: ComponentSubtree ->
             acc + "final val ${subtree.name.toUpperCase()}_TAG: String\n    get() = \"${subtree.name.toLowerCase()}\"\n"
         }
 
         val genSubtrees = {
-            (acc: String, subtree: ComponentSubtree) ->
+            acc: String, subtree: ComponentSubtree ->
             when (subtree.isCodeBlock) {
                 false    -> acc + subtree.toString()
                 else     -> acc
@@ -41,10 +41,16 @@ public class Component (
 
         val importList = File("resources/generators/ImportList.txt").readText()
 
+        val langInfo = LanguageInfo.getInstance()
+
         val parametersList = listOf(
-                Pair("@NAME_CC@"            , name.capitalize()             ),
                 Pair("@IMPORT_LIST@"        , importList                    ),
-                Pair("@COMP_PACKAGE@"       , compPackage                   ),
+                Pair("@FACTORY@"            , langInfo?.factory ?: ""       ),
+                Pair("@FACTORY_PACKAGE@"    , langInfo?.factoryPackage ?: ""),
+                Pair("@LANG@"               , langInfo?.language ?: ""      ),
+                Pair("@LANG_PACKAGE@"       , langInfo?.langPackage ?: ""   ),
+                Pair("@COMP_PACKAGE@"       , langInfo?.psiPackage ?: ""    ),
+                Pair("@NAME_CC@"            , name.capitalize()             ),
                 Pair("@COMP_CLASS@"         , psiComponentClass             ),
                 Pair("@PREDECESSORS@"       , predecessors ?: ""            ),
                 Pair("@SPECIFIC_IMPORT@"     , specificImport ?: ""         ),

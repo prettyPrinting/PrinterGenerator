@@ -1,12 +1,13 @@
-package com.intellij;
+package @LANG_PACKAGE@.components
 
 @IMPORT_LIST@
 import @COMP_PACKAGE@.@COMP_CLASS@
+
 @SPECIFIC_IMPORT@
 
 public class @NAME_CC@Component(
-        printer: Printer
-): PsiElementComponent<@COMP_CLASS@, SmartInsertPlace, PsiTemplateGen<@COMP_CLASS@, SmartInsertPlace>>(printer)
+        printer: @LANG@Printer
+): @LANG@PsiElementComponent<@COMP_CLASS@, SmartInsertPlace, PsiTemplateGen<@COMP_CLASS@, SmartInsertPlace>>(printer)
    @PREDECESSORS@
 {
 

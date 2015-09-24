@@ -1,6 +1,0 @@
-<component name="While" psiComponentClass="PsiWhileStatement" createFromText="Statement">
-    <subtree name="condition"       psiGetMethod="Condition"
-             isCodeBlock="false"     isRequired="true" />
-    <subtree name="body"            psiGetMethod="Body"
-             isCodeBlock="true"      isRequired="true" />
-</component>

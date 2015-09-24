@@ -1,0 +1,6 @@
+<language language="While"
+          langPackage="com.intellij.whileLang"
+          factory="WhileElementFactory"
+          factoryPackage="com.intellij.whileLang"
+          psiPackage="com.intellij.whileLang.psi.impl">
+</language>

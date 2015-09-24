@@ -1,8 +1,8 @@
 override protected fun getNewElement(
         text: String
-        , elementFactory: @ELEMENT_FACTORY@
 ): @COMP_CLASS@? {
     try {
+        val elementFactory = @ELEMENT_FACTORY@(printer.getProject())
         val newP = elementFactory.create@FROM_TEXT@FromText(text)
         return newP as? @COMP_CLASS@
     } catch (e: Exception) {

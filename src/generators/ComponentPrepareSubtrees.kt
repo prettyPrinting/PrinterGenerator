@@ -2,9 +2,6 @@ package org.jetbrains.PrinterGenerator.generators
 
 import java.io.File
 
-/**
- * Created by Aleksei on 3/19/2015.
- */
 public class ComponentPrepareSubtrees (
         val psiComponentClass: String
         , val subtrees : List<ComponentSubtree>
@@ -16,7 +13,7 @@ public class ComponentPrepareSubtrees (
         val prepSubtreesCodeTemplate = File("resources/generators/ComponentPrepareSubtrees.txt").readText()
 
         val prepSubtrees = {
-            (acc: String, subtree: ComponentSubtree) ->
+            acc: String, subtree: ComponentSubtree ->
             when(subtree.isCodeBlock) {
                 false   ->  acc + "prepare${subtree.name.capitalize()}Variants(p, variants, context)\n"
                 else    ->  acc + "preparePossibleCodeBlockPart(p.get${subtree

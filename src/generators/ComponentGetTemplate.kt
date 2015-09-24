@@ -2,9 +2,6 @@ package org.jetbrains.PrinterGenerator.generators
 
 import java.io.File
 
-/**
- * Created by Aleksei on 3/19/2015.
- */
 public class ComponentGetTemplate (
         val psiComponentClass: String
         , val subtrees : List<ComponentSubtree>
@@ -17,7 +14,7 @@ public class ComponentGetTemplate (
 
 
         val subtreesToInsPlace = {
-            (acc: String, subtree: ComponentSubtree) ->
+            acc: String, subtree: ComponentSubtree ->
             when (Pair(subtree.isCodeBlock, subtree.isRequired)){
                 Pair(false, false) ->
                     acc + "add${subtree.name.capitalize()}ToInsertPlaceMap(newP, insertPlaceMap, negShift)\n"

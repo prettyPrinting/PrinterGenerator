@@ -2,9 +2,6 @@ package org.jetbrains.PrinterGenerator.generators
 
 import java.io.File
 
-/**
- * Created by Aleksei on 3/19/2015.
- */
 public class ComponentUpdateSubtrees (
         val psiComponentClass: String
         , val subtrees : List<ComponentSubtree>

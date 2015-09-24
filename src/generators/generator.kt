@@ -1,9 +1,5 @@
 package org.jetbrains.PrinterGenerator.generators
 
-/**
- * Created by Aleksei on 11/21/2014.
- */
-
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileNotFoundException
@@ -207,7 +203,6 @@ public class StaXParser(val importList: String, psiPackage: String, elementFacto
                 if (endElement.getName().getLocalPart() != "component") { continue }
                 return Component(
                         name!!
-                        , compPackage
                         , psiComponentClass!!
                         , predecessors
                         , specificImport

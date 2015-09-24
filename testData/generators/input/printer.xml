@@ -1,5 +1,4 @@
-<printer factoryPack = "com.intellij.psi.PsiElementFactory" factory="WhileElementFactory" specificImport=""
-         defaultFromText="createStatementFromText">
+<printer specificImport="" defaultFromText="createStatementFromText">
     <file fileClassName="WhileFileComponent" filePsiClass="WhileFile"/>
     <component name="AssignStmtComponent" psiClass="PsiAssignStmt" fromText="Assignment"/>
     <component name="IfStmtComponent" psiClass="PsiIfStmt" fromText="IfStmt"/>

@@ -1,9 +1,5 @@
 package org.jetbrains.PrinterGenerator.generators
 
-/**
- * Created by Aleksei on 4/21/2015.
- */
-
 import java.io.FileInputStream
 import java.io.FileNotFoundException
 import java.util.ArrayList
@@ -16,17 +12,12 @@ import javax.xml.stream.events.EndElement
 data class ComponentData(val name : String?, val psiClass : String?, val fromText : String?)
 
 public class PrinterFilesParser() {
-
-    var factory            : String? = null
-    var factoryPack        : String? = null
     var specificImport     : String? = null
     var fileClassName      : String? = null
     var filePsiClass       : String? = null
     var defaultFromText    : String? = null
 
     private fun clean() {
-        factory            = null
-        factoryPack        = null
         specificImport     = null
         fileClassName      = null
         filePsiClass       = null
@@ -51,8 +42,6 @@ public class PrinterFilesParser() {
                         if (attribute !is Attribute) { break }
                         val value = attribute.getValue()
                         when (attribute.getName().toString()) {
-                            "factory"           -> factory = value
-                            "factoryPack"       -> factoryPack = value
                             "specificImport"    -> specificImport = value
                             "defaultFromText"   -> defaultFromText = value
                         }
@@ -96,9 +85,7 @@ public class PrinterFilesParser() {
                 val endElement: EndElement = event.asEndElement();
                 if (endElement.getName().getLocalPart() != "printer") { continue }
                 return Printer(
-                        factory
-                        , factoryPack
-                        , specificImport
+                          specificImport
                         , fileClassName
                         , filePsiClass
                         , defaultFromText

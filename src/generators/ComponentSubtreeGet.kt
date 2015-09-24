@@ -2,9 +2,6 @@ package org.jetbrains.PrinterGenerator.generators
 
 import java.io.File
 
-/**
- * Created by Aleksei on 3/18/2015.
- */
 public class ComponentSubtreeGet (
         public val name             : String
         , val psiSubtreeGet         : String

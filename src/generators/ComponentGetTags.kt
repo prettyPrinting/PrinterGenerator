@@ -2,9 +2,6 @@ package org.jetbrains.PrinterGenerator.generators
 
 import java.io.File
 
-/**
- * Created by Aleksei on 3/19/2015.
- */
 public class ComponentGetTags (
         val psiComponentClass: String
         , val subtrees : List<ComponentSubtree>
@@ -16,7 +13,7 @@ public class ComponentGetTags (
         val getTagsCodeTemplate = File("resources/generators/ComponentGetTags.txt").readText()
 
         val getTags = {
-            (acc: String, subtree: ComponentSubtree) ->
+            acc: String, subtree: ComponentSubtree ->
             when {
                 !subtree.isCodeBlock && !subtree.hasSeveralElem   ->
                     acc + "if (p.get${subtree.psiSubtreeGet}() != null) { set.add(${subtree

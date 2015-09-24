@@ -1,8 +1,0 @@
-<component name="Foreach" psiComponentClass="PsiForeachStatement" createFromText="Statement">
-    <subtree name="iteration_parameter" psiGetMethod="IterationParameter"
-             isCodeBlock="false"     isRequired="true" />
-    <subtree name="iterated_value"      psiGetMethod="IteratedValue"
-             isCodeBlock="false"     isRequired="true" />
-    <subtree name="body"                psiGetMethod="Body"
-             isCodeBlock="true"      isRequired="false" />
-</component>
