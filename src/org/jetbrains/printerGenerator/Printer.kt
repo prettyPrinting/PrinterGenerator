@@ -1,6 +1,7 @@
-package org.jetbrains.PrinterGenerator.generators
+package org.jetbrains.printerGenerator
 
-import org.jetbrains.generators.LanguageInfo
+import org.jetbrains.prettyPrinter.core.util.string.replaceAllInsertPlace
+import org.jetbrains.printerGenerator.LanguageInfo
 import java.io.File
 
 public class Printer (
@@ -11,10 +12,6 @@ public class Printer (
         , val components        : List<ComponentData>
 )
 {
-    //fun getFullConstructionUtils() = File("resources/generators/FullConstructionUtils.txt").readText()
-    //fun getFormatListFillUtils() = File("resources/generators/FormatListFillUtils.txt").readText()
-    //fun getFileTemplate() = File("resources/generators/template.txt").readText()
-
     fun getPsiElementComponent(): String {
         val PsiElementComponentTemplate = File("resources/generators/PsiElementComponent.txt").readText()
 

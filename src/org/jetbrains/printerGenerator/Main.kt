@@ -1,8 +1,7 @@
-package org.jetbrains.PrinterGenerator.generators
+package org.jetbrains.printerGenerator
 
 import kotlin.test.*
-import org.jetbrains.PrinterGenerator.generators.*
-import org.jetbrains.generators.LanguageInfo
+import org.jetbrains.printerGenerator.LanguageInfo
 import java.io.File
 
 val importList = "resources/generators/ImportList.txt"
@@ -17,7 +16,7 @@ fun main(args: Array<String>) {
 }
 
 fun generateComponents(inputPath: String, outputPath: String) {
-    val langInfoParser = LanguageInfo.getInstance(inputPathGlobal + "language.xml") // TODO: no hardcode
+    val langInfoParser = LanguageInfo.getInstance(inputPathGlobal + "language.xml")
     val folder : File = File(inputPath);
     val listOfFiles : Array<File> = folder.listFiles();
     val parser: StaXParser

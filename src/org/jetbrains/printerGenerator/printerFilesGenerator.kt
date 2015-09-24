@@ -1,4 +1,4 @@
-package org.jetbrains.PrinterGenerator.generators
+package org.jetbrains.printerGenerator
 
 import java.io.FileInputStream
 import java.io.FileNotFoundException

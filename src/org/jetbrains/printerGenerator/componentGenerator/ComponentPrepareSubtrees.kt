@@ -1,5 +1,6 @@
-package org.jetbrains.PrinterGenerator.generators
+package org.jetbrains.printerGenerator.componentGenerator
 
+import org.jetbrains.prettyPrinter.core.util.string.replaceAllInsertPlace
 import java.io.File
 
 public class ComponentPrepareSubtrees (

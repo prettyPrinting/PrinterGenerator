@@ -1,5 +1,6 @@
-package org.jetbrains.PrinterGenerator.generators
+package org.jetbrains.printerGenerator
 
+import org.jetbrains.printerGenerator.componentGenerator.*
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileNotFoundException
@@ -131,9 +132,9 @@ public class StaXParser(val importList: String, psiPackage: String, elementFacto
                 , psiGetMethod!!
                 , isCodeBlock!!.toBoolean()
                 , isRequired!!.toBoolean()
-                , addCode   ?: ComponentSubtreeAdd(name!!, psiGetMethod!!, isEverywhereSuit.toBoolean(), null).toString()
-                , prepCode  ?: ComponentSubtreePrep(name!!, null).toString()
-                , getCode   ?: ComponentSubtreeGet(name!!, psiGetMethod!!, false, null, null).toString()
+                , addCode ?: ComponentSubtreeAdd(name!!, psiGetMethod!!, isEverywhereSuit.toBoolean(), null).toString()
+                , prepCode ?: ComponentSubtreePrep(name!!, null).toString()
+                , getCode ?: ComponentSubtreeGet(name!!, psiGetMethod!!, false, null, null).toString()
         )
     }
 

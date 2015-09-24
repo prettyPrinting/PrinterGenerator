@@ -1,12 +1,9 @@
-package org.jetbrains.PrinterGenerator.generators
-
+package org.jetbrains.printerGenerator.componentGenerator
+import org.jetbrains.prettyPrinter.core.util.string.replaceAllInsertPlace
 import java.io.File
 import org.jetbrains.format.*
-import org.jetbrains.generators.LanguageInfo
+import org.jetbrains.printerGenerator.LanguageInfo
 
-/**
- * Created by Aleksei on 3/5/2015.
- */
 public class Component (
           val name              : String
         , val psiComponentClass : String

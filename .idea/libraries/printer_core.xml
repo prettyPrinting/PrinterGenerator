@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="printer-core">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/printer-core.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
