@@ -1,0 +1,10 @@
+<component name="Procedure" psiComponentClass="PsiProcedure" createFromText="Procedure">
+    <subtree name="procName"         psiGetMethod="Id"
+             isCodeBlock="false"     isRequired="true" />
+    <subtree name="paramList"        psiGetMethod="ParamList"
+             isCodeBlock="false"     isRequired="false" />
+    <subtree name="stmtList"   psiGetMethod="StmtList"
+             isCodeBlock="false"    isRequired="true" >
+        <getCode hasSeveralElements="true" foldFunction="r, e -> r - e" />
+    </subtree>
+</component>

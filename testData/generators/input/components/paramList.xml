@@ -1,0 +1,5 @@
+<component name="ParamList" psiComponentClass="PsiParamList" createFromText="ParamList" isList="true">
+    <subtree name="list"      psiGetMethod="RefExprList" isEverywhereSuit="true"
+             isCodeBlock="false"     isRequired="true">
+    </subtree>
+</component>

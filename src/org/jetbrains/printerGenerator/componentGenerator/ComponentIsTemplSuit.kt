@@ -7,11 +7,17 @@ public class ComponentIsTemplSuit (
         val psiComponentClass: String
         , val subtrees : List<ComponentSubtree>
         , val specificCode : String?
+        , val isList : String
 )
 {
     override public fun toString(): String{
 
-        val isTemplSuitCodeTemplate = File("resources/generators/ComponentIsTemplSuit.txt").readText()
+        val isTemplSuitCodeTemplate: String
+        if (!isList.toBoolean()) {
+            isTemplSuitCodeTemplate = File("resources/generators/ComponentIsTemplSuit.txt").readText()
+        } else {
+            isTemplSuitCodeTemplate = File("resources/generators/ComponentIsTemplSuitList.txt").readText()
+        }
 
         val isTemplSuitParametersList = listOf(
                 Pair("@COMP_CLASS@"     , psiComponentClass             ),

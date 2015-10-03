@@ -1,0 +1,6 @@
+<component name="ProcList" psiComponentClass="PsiProcList" createFromText="ProcList">
+    <subtree name="list" psiGetMethod="ProcedureList" isEverywhereSuit="true"
+             isCodeBlock="false" isRequired="true" hasSeveralElements="true">
+        <getCode foldFunction="r, e -> r - e" />
+    </subtree>
+</component>

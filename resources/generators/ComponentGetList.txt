@@ -1,0 +1,1 @@
+override protected fun getList(p: @COMP_CLASS@) = p.get@SUBTREE_GET@().toList() ?: listOf()

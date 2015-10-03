@@ -13,13 +13,13 @@ import javax.xml.stream.events.EndElement
 import javax.xml.stream.events.StartElement
 import javax.xml.stream.events.XMLEvent
 
-public class StaXParser(val importList: String, psiPackage: String, elementFactory: String) {
+public class StaXParser(elementFactory: String) {
 
     val factory            : String  = elementFactory
-    val compPackage        : String  = psiPackage
     var name               : String? = null
     var psiComponentClass  : String? = null
     var createFromText     : String? = null
+    var isList             : String  = "false"
     var predecessors       : String? = null
     var specificImport     : String? = null
     var getNewElement      : String? = null
@@ -34,6 +34,7 @@ public class StaXParser(val importList: String, psiPackage: String, elementFacto
         name               = null
         psiComponentClass  = null
         createFromText     = null
+        isList             = "false"
         predecessors       = null
         specificImport     = null
         getNewElement      = null
@@ -159,6 +160,7 @@ public class StaXParser(val importList: String, psiPackage: String, elementFacto
                             "name"              -> name = value
                             "psiComponentClass" -> psiComponentClass = value
                             "createFromText"    -> createFromText = value
+                            "isList"            -> isList = value
                             "predecessors"      -> predecessors = value
                             "specificImport"    -> specificImport = value
                         }
@@ -182,7 +184,8 @@ public class StaXParser(val importList: String, psiPackage: String, elementFacto
                 }
 
                 if (localPart == "isTemplSuit") {
-                    isTemplateSuitable = ComponentIsTemplSuit(psiComponentClass!!, subtrees, getSpecificCode(startElement)).toString()
+                    isTemplateSuitable = ComponentIsTemplSuit(
+                            psiComponentClass!!, subtrees, getSpecificCode(startElement), isList).toString()
                 }
 
                 if (localPart == "getTemplate") {
@@ -205,6 +208,7 @@ public class StaXParser(val importList: String, psiPackage: String, elementFacto
                 return Component(
                         name!!
                         , psiComponentClass!!
+                        , isList
                         , predecessors
                         , specificImport
                         , subtrees
@@ -212,7 +216,7 @@ public class StaXParser(val importList: String, psiPackage: String, elementFacto
                         , updateSubtrees ?: ComponentUpdateSubtrees(psiComponentClass!!, subtrees, null).toString()
                         , prepareSubtrees ?: ComponentPrepareSubtrees(psiComponentClass!!, subtrees, null).toString()
                         , getTags ?: ComponentGetTags(psiComponentClass!!, subtrees, null).toString()
-                        , isTemplateSuitable ?: ComponentIsTemplSuit(psiComponentClass!!, subtrees, null).toString()
+                        , isTemplateSuitable ?: ComponentIsTemplSuit(psiComponentClass!!, subtrees, null, isList).toString()
                         , getTemplate ?: ComponentGetTemplate(psiComponentClass!!, subtrees, null).toString()
                         , specificCode
                 )
@@ -223,8 +227,8 @@ public class StaXParser(val importList: String, psiPackage: String, elementFacto
 
     public fun readXml(inputXml : String) : Component? {
         try {
-            val mImport = File(importList).readText()
-            File("resources/generators/ImportList.txt").writeText(mImport)
+            //val mImport = File(importList).readText()
+            //File("resources/generators/ImportList.txt").writeText(mImport)
 
             val inputFactory = XMLInputFactory.newInstance()
             val mInput = FileInputStream(inputXml)

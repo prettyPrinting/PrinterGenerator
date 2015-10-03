@@ -21,7 +21,7 @@ fun generateComponents(inputPath: String, outputPath: String) {
     val listOfFiles : Array<File> = folder.listFiles();
     val parser: StaXParser
     try {
-        parser = StaXParser(importList, langInfoParser!!.psiPackage, langInfoParser.factory)
+        parser = StaXParser(langInfoParser!!.factory)
     } catch (e: NullPointerException) {
         println("Incorrect input in language.xml")
         return

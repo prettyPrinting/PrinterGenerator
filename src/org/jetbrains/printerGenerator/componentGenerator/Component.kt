@@ -7,6 +7,7 @@ import org.jetbrains.printerGenerator.LanguageInfo
 public class Component (
           val name              : String
         , val psiComponentClass : String
+        , val isList            : String
         , val predecessors      : String?
         , val specificImport    : String?
         , val subtrees          : List<ComponentSubtree>
@@ -20,8 +21,12 @@ public class Component (
 )
 {
     override public fun toString(): String {
-
-        val componentCodeTemplate = File("resources/generators/Component.txt").readText()
+        val componentCodeTemplate: String
+        if (isList.toBoolean()) {
+            componentCodeTemplate = File("resources/generators/ListComponent.txt").readText()
+        } else {
+            componentCodeTemplate = File("resources/generators/Component.txt").readText()
+        }
 
         val declTags = {
             acc: String, subtree: ComponentSubtree ->
@@ -35,6 +40,12 @@ public class Component (
                 else     -> acc
             }
         }
+
+        val getList =
+                if (isList.toBoolean())
+                    ComponentGetList(psiComponentClass, subtrees.get(0).psiSubtreeGet).toString()
+                else
+                    ""
 
         val importList = File("resources/generators/ImportList.txt").readText()
 
@@ -59,7 +70,8 @@ public class Component (
                 Pair("@GET_TAGS@"           , getTags                       ),
                 Pair("@IS_TEMPL_SUIT@"      , isTemplSuit                   ),
                 Pair("@GET_TEMPLATE@"       , getTemplate                   ),
-                Pair("@SPECIFIC_CODE@"      , specificCode ?: ""            )
+                Pair("@SPECIFIC_CODE@"      , specificCode ?: ""            ),
+                Pair("@GET_LIST@"           , getList                       )
         )
         return componentCodeTemplate.replaceAllInsertPlace(parametersList)
     }
