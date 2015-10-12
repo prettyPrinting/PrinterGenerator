@@ -1,0 +1,6 @@
+private fun get@NAME_CC@Variants(
+        p: @COMP_CLASS@
+        , context: VariantConstructionContext
+): FormatSet {
+    @GET_SUBTREE@
+}

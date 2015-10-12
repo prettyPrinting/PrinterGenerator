@@ -31,7 +31,11 @@ fun generateComponents(inputPath: String, outputPath: String) {
     val compsOutputPath = outputPath + "components/"
     for (file in listOfFiles) {
         if (file.isFile()) {
-            File(compsOutputPath + file.getName().replaceAfterLast(".", "kt")).writeText(parser.readXml(file.getPath()).toString())
+            if (file.getName() != "langFile.xml") {
+                File(compsOutputPath + file.getName().replaceAfterLast(".", "kt")).writeText(parser.readXml(file.getPath()).toString())
+            } else {
+                File(compsOutputPath + langInfoParser?.language + "File.kt").writeText(parser.readXml(file.getPath()).toString())
+            }
         }
     }
 }

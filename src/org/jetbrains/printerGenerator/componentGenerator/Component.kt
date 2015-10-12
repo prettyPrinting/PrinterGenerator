@@ -18,11 +18,40 @@ public class Component (
         , val isTemplSuit       : String
         , val getTemplate       : String
         , val specificCode      : String?
+        , val isFile            : String
 )
 {
     override public fun toString(): String {
         val componentCodeTemplate: String
-        if (isList.toBoolean()) {
+        val parametersList: List<Pair<String, String>>
+
+        if (isFile.toBoolean()) {
+            componentCodeTemplate = File("resources/generators/FileComponent.txt").readText()
+
+            val getSubtrees = {
+                acc: String, subtree: ComponentSubtree ->
+                acc + getFileSubtree(subtree)
+            }
+
+            val fileSubtreesVariants = {
+                acc: String, subtree: ComponentSubtree ->
+                acc + getFileSubtreesVariants(subtree)
+            }
+
+            val langInfo = LanguageInfo.getInstance()
+
+            parametersList = listOf(
+                    Pair("@LANG@"                   , langInfo?.language ?: ""      ),
+                    Pair("@LANG_PACKAGE@"           , langInfo?.langPackage ?: ""   ),
+                    Pair("@COMP_PACKAGE@"           , langInfo?.langPackage ?: ""    ),
+                    Pair("@NAME_CC@"                , name.capitalize()             ),
+                    Pair("@COMP_CLASS@"             , psiComponentClass             ),
+                    Pair("@GET_SUBTREES@"           , subtrees.fold("", getSubtrees)),
+                    Pair("@GET_SUBTREES_VARIANTS@"  , subtrees.fold("", fileSubtreesVariants))
+            )
+
+            return componentCodeTemplate.replaceAllInsertPlace(parametersList)
+        } else if (isList.toBoolean()) {
             componentCodeTemplate = File("resources/generators/ListComponent.txt").readText()
         } else {
             componentCodeTemplate = File("resources/generators/Component.txt").readText()
@@ -51,7 +80,7 @@ public class Component (
 
         val langInfo = LanguageInfo.getInstance()
 
-        val parametersList = listOf(
+        parametersList = listOf(
                 Pair("@IMPORT_LIST@"        , importList                    ),
                 Pair("@FACTORY@"            , langInfo?.factory ?: ""       ),
                 Pair("@FACTORY_PACKAGE@"    , langInfo?.factoryPackage ?: ""),
@@ -74,5 +103,28 @@ public class Component (
                 Pair("@GET_LIST@"           , getList                       )
         )
         return componentCodeTemplate.replaceAllInsertPlace(parametersList)
+    }
+
+    private fun getFileSubtreesVariants(subtree: ComponentSubtree): String {
+        val fileSubtreeVariantsTemplate = File("resources/generators/FileSubtreeVariants.txt").readText()
+
+        val parametersList = listOf(
+                Pair("@NAME@"               , subtree.name),
+                Pair("@NAME_CC@"            , subtree.name.capitalize())
+        )
+        return fileSubtreeVariantsTemplate.replaceAllInsertPlace(parametersList)
+    }
+
+    private fun getFileSubtree(subtree: ComponentSubtree): String {
+        val template = File("resources/generators/SubtreeGetVariants.txt").readText()
+
+        val parametersList = listOf(
+                Pair("@NAME_CC@"        , subtree.name.capitalize()),
+                Pair("@COMP_CLASS@"     , subtree.psiComponentClass),
+                Pair("@GET_SUBTREE@"    , subtree.getCode)
+        )
+
+        return template.replaceAllInsertPlace(parametersList)
+
     }
 }

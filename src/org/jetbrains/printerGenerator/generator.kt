@@ -29,6 +29,7 @@ public class StaXParser(elementFactory: String) {
     var isTemplateSuitable : String? = null
     var getTemplate        : String? = null
     var specificCode       : String? = null
+    var isFile             : String = "false"
 
     private fun clean() {
         name               = null
@@ -44,6 +45,7 @@ public class StaXParser(elementFactory: String) {
         isTemplateSuitable = null
         getTemplate        = null
         specificCode       = null
+        isFile             = "false"
     }
 
     private fun getSpecificCode(startElement: StartElement) : String? {
@@ -163,6 +165,7 @@ public class StaXParser(elementFactory: String) {
                             "isList"            -> isList = value
                             "predecessors"      -> predecessors = value
                             "specificImport"    -> specificImport = value
+                            "isFile"            -> isFile = value
                         }
                     }
                 }
@@ -219,6 +222,7 @@ public class StaXParser(elementFactory: String) {
                         , isTemplateSuitable ?: ComponentIsTemplSuit(psiComponentClass!!, subtrees, null, isList).toString()
                         , getTemplate ?: ComponentGetTemplate(psiComponentClass!!, subtrees, null).toString()
                         , specificCode
+                        , isFile
                 )
             }
         }

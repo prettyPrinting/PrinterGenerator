@@ -1,0 +1,7 @@
+<component name="WhileFile" psiComponentClass="WhileFile" isFile="true"
+           createFromText="File">
+    <subtree name="procList" psiGetMethod="ProcList"
+             isCodeBlock="false" isRequired="false"/>
+    <subtree name="stmtList" psiGetMethod="StmtList"
+             isCodeBlock="false" isRequired="false"/>
+</component>
