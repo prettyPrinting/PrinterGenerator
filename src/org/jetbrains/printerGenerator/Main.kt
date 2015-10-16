@@ -1,22 +1,36 @@
 package org.jetbrains.printerGenerator
 
-import kotlin.test.*
-import org.jetbrains.printerGenerator.LanguageInfo
 import java.io.File
 
-val importList = "resources/generators/ImportList.txt"
-val componentsPath = "testData/generators/input/components/"
-val inputPathGlobal = "testData/generators/input/"
-val outputPathGlobal = "testData/generators/output/"
-
 fun main(args: Array<String>) {
+    val xmlDir = File("../printerXMLs/")
+    val inputPath: String
+    val outputPath: String
+    if (xmlDir.exists()) {
+        inputPath = "../printerXMLs/"
+        outputPath = "../gen/"
+        for (dir in xmlDir.listFiles()) {
+            val dirName = dir.getName()
+            val newInputPath = inputPath + dirName + "/"
+            val newOutputPath = outputPath + dirName + "/"
+            File(newOutputPath).exists() || File(newOutputPath).mkdirs()
+            LanguageInfo.getInstance(newInputPath + "language.xml")
+            generateComponents(newInputPath + "components/", newOutputPath)
+            generatePrinterFiles(newInputPath, newOutputPath)
+            LanguageInfo.clean()
+        }
+    } else {
+        inputPath = "testData/generators/input/"
+        outputPath = "testData/generators/output/"
+        val componentsPath = "testData/generators/input/components/"
+        generateComponents(componentsPath, outputPath)
+        generatePrinterFiles(inputPath, outputPath)
+    }
 
-    generateComponents(componentsPath, outputPathGlobal)
-    generatePrinterFiles(inputPathGlobal, outputPathGlobal)
 }
 
 fun generateComponents(inputPath: String, outputPath: String) {
-    val langInfoParser = LanguageInfo.getInstance(inputPathGlobal + "language.xml")
+    val langInfoParser = LanguageInfo.getInstance()
     val folder : File = File(inputPath);
     val listOfFiles : Array<File> = folder.listFiles();
     val parser: StaXParser
@@ -39,6 +53,7 @@ fun generateComponents(inputPath: String, outputPath: String) {
         }
     }
 }
+
 fun generatePrinterFiles(inputPath: String, outputPath: String) {
     val langInfoParser = LanguageInfo.getInstance()
     val parser: PrinterFilesParser = PrinterFilesParser()

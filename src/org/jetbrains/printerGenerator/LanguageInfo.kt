@@ -32,6 +32,10 @@ class LanguageInfo private constructor(inputXml: String) {
                 return null
             }
         }
+
+        public fun clean() {
+            mInstance = null
+        }
     }
 
     init {
@@ -62,14 +66,6 @@ class LanguageInfo private constructor(inputXml: String) {
                 }
             }
         }
-    }
-
-    private fun clean() {
-        language = ""
-        langPackage = ""
-        factory = ""
-        factoryPackage = ""
-        psiPackage = ""
     }
 
     private fun readXml(inputXml: String): Map<String, String>? {

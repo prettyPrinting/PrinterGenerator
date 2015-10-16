@@ -2,9 +2,9 @@ An application for printer- and printer components generation.
 
 # How to generate components
 
-1. Create .xml-file with language info. (Put in testData/generators/input/language.xml).
-2. Create .xml-file with printer info. (Put in testData/generators/input/printer.xml).
-3. Create .xml-files for all significant structures in language. (Put in testData/generators/input/components/)
+1. Create .xml-file with language info. (Put it in testData/generators/input/language.xml (standalone usage) or ../printerXMLs/%lang_name%.xml (when this project is a sub-module of printer-plugin)).
+2. Create .xml-file with printer info. (Put it in testData/generators/input/printer.xml or in ../printerXMLs/printer.xml).
+3. Create .xml-files for all significant structures in language. (Put them in testData/generators/input/components/ or in ../printerXMLs/components/)
 4. Run generator
 
 ## Language-info should contain:
@@ -15,7 +15,7 @@ An application for printer- and printer components generation.
 * Package of PSI Classes (Can be written manually, found & re-used or generated with [Grammar-Kit](https://github.com/JetBrains/Grammar-Kit))
 
 ## Printer-info should contain:
-----------------------------
+
 * **List of components as sub-nodes**. Each sub-node contains the following fields:
     - *name* : name of component class
     - *psiClass* : name of PSI Class 
@@ -28,7 +28,7 @@ An application for printer- and printer components generation.
     - *defaultFromText* : if element factory is poor as Java one (JavaElementFactory) you can specify most common method for creating components.
   
 ## Component's xml contains:
--------------------------
+
 * **as fields** :
     - *name*  - choose a name for the component (notice: "Component"-suffix adds automatically)
     - *psiComponentClass*  - PSI-Class
@@ -36,7 +36,7 @@ An application for printer- and printer components generation.
     - *specificImport*  - Use it if component requires some specific classes
     - *predecessors*  - Adds predecessors to the component class 
     - *isList*  - `false` by default. Use it when component is a list (e.g. parameter list).
-    - *isFile*  - `false` by default. Use it when defining file component (../components/langFile.xml)
+    - *isFile*  - `false` by default. Use it when defining file component (*/components/langFile.xml)
 * **as sub-nodes** : **_subtrees_** (e.g. IfStatement commonly has 3 subtrees: condition, then-branch, else-branch)
   Each **subtree** has the following fields:
     - *name* : whatever you want

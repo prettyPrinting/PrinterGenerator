@@ -1,0 +1,64 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:0.12.613'
+    }
+}
+
+plugins {
+    id "org.jetbrains.intellij" version "0.0.23"
+}
+
+apply plugin: 'idea'
+apply plugin: 'java'
+apply plugin: 'kotlin'
+apply plugin: 'application'
+apply plugin: 'org.jetbrains.intellij'
+
+intellij {
+    version '14.1.4'
+    plugins 'kotlin'
+}
+
+mainClassName = "org.jetbrains.printerGenerator.PrinterGeneratorPackage"
+
+sourceSets {
+
+    main {
+        kotlin {
+            srcDirs = ['src']
+        }
+        java {
+            srcDirs = ['src']
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.jetbrains.kotlin:kotlin-stdlib:0.12.613'
+    compile files('format.jar')
+    compile files('printer-core.jar')
+}
+
+idea.project.ipr {
+    beforeMerged { project ->
+        project.modulePaths.clear()
+    }
+}
+
+idea.module {
+    name = "PrinterGenerator"
+    jdkName = "IntelliJ IDEA SDK"
+    sourceDirs += file('src')
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.5'
+}
+
