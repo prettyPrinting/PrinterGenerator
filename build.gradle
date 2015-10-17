@@ -7,9 +7,9 @@ buildscript {
     }
 }
 
-plugins {
-    id "org.jetbrains.intellij" version "0.0.23"
-}
+//plugins {
+//    id "org.jetbrains.intellij" version "0.0.23"
+//}
 
 apply plugin: 'idea'
 apply plugin: 'java'
@@ -46,16 +46,20 @@ dependencies {
     compile files('printer-core.jar')
 }
 
-idea.project.ipr {
-    beforeMerged { project ->
-        project.modulePaths.clear()
-    }
-}
+//idea.project.ipr {
+//    beforeMerged { project ->
+//        project.modulePaths.clear()
+//    }
+//}
 
 idea.module {
     name = "PrinterGenerator"
     jdkName = "IntelliJ IDEA SDK"
     sourceDirs += file('src')
+}
+
+task setup {
+    dependsOn run
 }
 
 task wrapper(type: Wrapper) {
