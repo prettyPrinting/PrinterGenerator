@@ -1,6 +1,7 @@
 package org.jetbrains.printerGenerator
 
 import java.io.File
+import kotlin.text.Regex
 
 fun main(args: Array<String>) {
     val xmlDir = File("../printerXMLs/")
@@ -13,7 +14,7 @@ fun main(args: Array<String>) {
             val dirName = dir.getName()
             val newInputPath = inputPath + dirName + "/"
             val langInfo = LanguageInfo.getInstance(newInputPath + "language.xml")
-            val newOutputPath = outputPath + langInfo?.langPackage?.replace(".", "/") + "/"
+            val newOutputPath = outputPath + langInfo?.langPackage?.replace(Regex("."), "/") + "/"
             File(newOutputPath).exists() || File(newOutputPath).mkdirs()
             generateComponents(newInputPath + "components/", newOutputPath)
             generatePrinterFiles(newInputPath, newOutputPath)
