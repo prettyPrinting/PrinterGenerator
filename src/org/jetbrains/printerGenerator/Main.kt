@@ -22,6 +22,7 @@ fun main(args: Array<String>) {
     } else {
         inputPath = "testData/generators/input/"
         outputPath = "testData/generators/output/"
+        LanguageInfo.getInstance(inputPath + "language.xml")
         val componentsPath = "testData/generators/input/components/"
         generateComponents(componentsPath, outputPath)
         generatePrinterFiles(inputPath, outputPath)
