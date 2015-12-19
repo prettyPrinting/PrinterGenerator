@@ -14,7 +14,7 @@ fun main(args: Array<String>) {
             val dirName = dir.getName()
             val newInputPath = inputPath + dirName + "/"
             val langInfo = LanguageInfo.getInstance(newInputPath + "language.xml")
-            val newOutputPath = outputPath + langInfo?.langPackage?.replace(Regex("."), "/") + "/"
+            val newOutputPath = outputPath + langInfo?.langPackage?.replace('.', '/') + "/"
             File(newOutputPath).exists() || File(newOutputPath).mkdirs()
             generateComponents(newInputPath + "components/", newOutputPath)
             generatePrinterFiles(newInputPath, newOutputPath)
