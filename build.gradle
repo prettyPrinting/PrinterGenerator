@@ -1,5 +1,6 @@
 buildscript {
     repositories {
+        jcenter()
         mavenCentral()
         maven {
             url "https://plugins.gradle.org/m2/"
@@ -8,6 +9,7 @@ buildscript {
     dependencies {
         classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.0.0-beta-3595'
         classpath 'gradle.plugin.org.jetbrains:gradle-intellij-plugin:0.0.23'
+        classpath 'de.undercouch:gradle-download-task:2.1.0'
     }
 }
 
@@ -16,6 +18,7 @@ apply plugin: 'java'
 apply plugin: 'kotlin'
 apply plugin: 'application'
 apply plugin: 'org.jetbrains.intellij'
+apply plugin: 'de.undercouch.download'
 
 intellij {
     version '15.0'
@@ -40,8 +43,8 @@ repositories {
 dependencies {
     compile 'org.jetbrains.kotlin:kotlin-stdlib:1.0.0-beta-3595'
     compile 'org.jetbrains.kotlin:kotlin-runtime:1.0.0-beta-3595'
-    compile files('format.jar')
-    compile files('printer-core.jar')
+    compile files('libs/format.jar')
+    compile files('libs/printer-core.jar')
 }
 
 idea.module {
@@ -50,11 +53,25 @@ idea.module {
     sourceDirs += file('src')
 }
 
+task downloadLibs {
+    def libs = new File('libs/')
+    if (!libs.exists()) {
+        libs.mkdirs()
+    }
+    def fmt = new File('libs/format.jar')
+    new URL('https://github.com/IgorOzernykh/printer-core/releases/download/1.0/format.jar')
+            .withInputStream{ i -> fmt.withOutputStream{ it << i }}
+    def core = new File('libs/printer-core.jar')
+    new URL('https://github.com/IgorOzernykh/printer-core/releases/download/1.0/printer-core.jar')
+            .withInputStream{ i -> core.withOutputStream{ it << i }}
+}
+
 task setup {
-    dependsOn ideaModule, run
+    dependsOn downloadLibs, ideaModule, run
 }
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.5'
 }
+
 
