@@ -73,8 +73,7 @@ class @LANG@Printer(
     }
 
     override public fun createElementFromText(p: PsiElement, text: String): PsiElement? {
-        val factory = @FACTORY@(getProject())
-        if (factory == null) { return null }
+        val factory = @FACTORY@(getProject()) ?: return null
 
         return when (p) {
             @FACTORY_CREATE@
@@ -86,9 +85,8 @@ class @LANG@Printer(
         val formatSet = getVariants(p)
 
         val threadMXBean = ManagementFactory.getThreadMXBean()!!
-        val startTime = threadMXBean.getCurrentThreadCpuTime()
-        val chosenFormat = formatSet.head()
-        if (chosenFormat == null) { return }
+        val startTime = threadMXBean.currentThreadCpuTime
+        val chosenFormat = formatSet.head() ?: return
 
         fun replaceElement(newElement: PsiElement) {
             getProject().performUndoWrite { p.replace(newElement) }
@@ -99,7 +97,7 @@ class @LANG@Printer(
 
         if (p is PsiFile) {
             val document = PsiDocumentManager.getInstance(getProject())?.getDocument(p)
-            val oldDocSize = document?.getText()?.size
+            val oldDocSize = document?.text?.length
             if (document == null || oldDocSize == null) { return }
             getProject().performUndoWrite {
                 document.replaceString(0, oldDocSize, newElementText)
@@ -109,8 +107,7 @@ class @LANG@Printer(
 
         val statement: PsiElement
         try {
-            val createdStatement = createElementFromText(p, newElementText)
-            if (createdStatement == null) { return }
+            val createdStatement = createElementFromText(p, newElementText) ?: return
             statement = createdStatement
         } catch (e: IncorrectOperationException) { return }
 
@@ -118,7 +115,7 @@ class @LANG@Printer(
         renewCache(p, statement)
         replaceElement(statement)
 
-        val endTime = threadMXBean.getCurrentThreadCpuTime()
+        val endTime = threadMXBean.currentThreadCpuTime
         replaceTime += endTime - startTime
     }
 

@@ -17,12 +17,13 @@ public class ComponentGetTags (
             acc: String, subtree: ComponentSubtree ->
             when {
                 !subtree.isCodeBlock && !subtree.hasSeveralElem   ->
-                    acc + "if (p.get${subtree.psiSubtreeGet}() != null) { set.add(${subtree
+                    acc + "if (p.${subtree.psiSubtreeGet.decapitalize()} != null) { set.add(${subtree
                         .name.toUpperCase()}_TAG) }\n"
                 !subtree.isCodeBlock && subtree.hasSeveralElem    ->
-                    acc + "if (p.get${subtree.psiSubtreeGet}() != null && !p.get${subtree.psiSubtreeGet}().isEmpty())" +
+                    acc + "if (p.${subtree.psiSubtreeGet.decapitalize()} != null " +
+                            "&& !p.${subtree.psiSubtreeGet.decapitalize()}.isEmpty())" +
                             " { set.add(${subtree.name.toUpperCase()}_TAG) }\n"
-                else    ->  acc + "addPossibleCodeBlockTag(set, p.get${subtree.psiSubtreeGet}(), ${subtree
+                else    ->  acc + "addPossibleCodeBlockTag(set, p.${subtree.psiSubtreeGet.decapitalize()}, ${subtree
                         .name.toUpperCase()}_TAG)\n"
 
             }

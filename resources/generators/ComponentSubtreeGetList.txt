@@ -1,4 +1,4 @@
-val @NAME@ = p.get@SUBTREE_GET@()
+val @NAME@ = p.@SUBTREE_GET@
 if (@NAME@ == null || @NAME@.isEmpty()) { return printer.getEmptySet() }
 
 val @NAME@Variants = @NAME@.map { e -> printer.getVariants(e, context) }

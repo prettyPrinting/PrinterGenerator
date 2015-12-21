@@ -13,8 +13,8 @@ public class ComponentGetList (
         val getListText = File("resources/generators/ComponentGetList.txt").readText()
 
         val addParameterList = listOf(
-                Pair("@SUBTREE_GET@"    , psiSubtreeGet     ),
-                Pair("@COMP_CLASS@"     , compClass         )
+                Pair("@SUBTREE_GET@"    , psiSubtreeGet.decapitalize()),
+                Pair("@COMP_CLASS@"     , compClass)
         )
 
         return getListText.replaceAllInsertPlace(addParameterList)

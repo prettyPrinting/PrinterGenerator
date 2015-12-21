@@ -1,12 +1,11 @@
-val @NAME@ = p.get@SUBTREE_GET@()
-val @NAME@TextRange = @NAME@?.getTextRange()
-if (@NAME@TextRange == null) { return false }
+val @NAME@ = p.@SUBTREE_GET@
+val @NAME@TextRange = @NAME@?.getTextRange() ?: return false
 
-val text = p.getContainingFile()?.getText()
-if (text == null) { return false }
+val text = p.containingFile?.text ?: return false
 val fillConstant = text.getFillConstant(@NAME@TextRange)
 
 insertPlaceMap.put(
        @NAME_CAP@_TAG
-       , SmartInsertPlace(@NAME@TextRange.shiftRight(delta), fillConstant, @EVERYWHERE_SUIT@    )
+       , SmartInsertPlace(@NAME@TextRange.shiftRight(delta), fillConstant, @EVERYWHERE_SUIT@
+    )
 return true

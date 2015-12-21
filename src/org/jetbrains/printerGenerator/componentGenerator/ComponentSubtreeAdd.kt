@@ -19,10 +19,10 @@ public class ComponentSubtreeAdd (
                 else                  { "$name!!.toBox())\n" }
 
         val addParameterList = listOf(
-                Pair("@SUBTREE_GET@"    , psiSubtreeGet     ),
-                Pair("@NAME@"           , name              ),
+                Pair("@SUBTREE_GET@"    , psiSubtreeGet.decapitalize()),
+                Pair("@NAME@"           , name),
                 Pair("@NAME_CAP@"       , name.toUpperCase()),
-                Pair("@EVERYWHERE_SUIT@", everywhereSuit    )
+                Pair("@EVERYWHERE_SUIT@", everywhereSuit)
         )
 
         return specificCode ?: addCodeTemplate.replaceAllInsertPlace(addParameterList)
