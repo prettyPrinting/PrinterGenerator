@@ -58,10 +58,10 @@ task downloadLibs {
     if (!libs.exists()) {
         libs.mkdirs()
     }
-    def fmt = new File('libs/format.jar')
+    def fmt = new File("${projectDir}${File.separator}libs${File.separator}format.jar")
     new URL('https://github.com/IgorOzernykh/printer-core/releases/download/1.0/format.jar')
             .withInputStream{ i -> fmt.withOutputStream{ it << i }}
-    def core = new File('libs/printer-core.jar')
+    def core = new File("${projectDir}${File.separator}libs${File.separator}printer-core.jar")
     new URL('https://github.com/IgorOzernykh/printer-core/releases/download/1.0/printer-core.jar')
             .withInputStream{ i -> core.withOutputStream{ it << i }}
 }
