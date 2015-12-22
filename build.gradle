@@ -54,7 +54,7 @@ idea.module {
 }
 
 task downloadLibs {
-    def libs = new File('libs/')
+    def libs = new File("${projectDir}${File.separator}libs${File.separator}")
     if (!libs.exists()) {
         libs.mkdirs()
     }
