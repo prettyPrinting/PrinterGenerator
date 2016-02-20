@@ -24,10 +24,10 @@ public class ComponentGetTemplate (
                             .capitalize()}ToInsertPlaceMap(newP, insertPlaceMap, negShift)) { return null }\n"
                 Pair(true, false)  ->
                     acc + "addCBtoInsertPlaceMap(newP.get${subtree
-                            .psiSubtreeGet}(), ${subtree.name.toUpperCase()}_TAG, insertPlaceMap, text)\n"
+                            .psiSubtreeGet}(), ${subtree.name.toUpperCase()}_TAG, insertPlaceMap, newP.text ?: \"\")\n"
                 else                                        ->
                     acc + "if (!addCBtoInsertPlaceMap(newP.get${subtree.psiSubtreeGet}(), ${subtree
-                            .name.toUpperCase()}_TAG, insertPlaceMap, text)) { return null }\n"
+                            .name.toUpperCase()}_TAG, insertPlaceMap, newP.text ?: \"\")) { return null }\n"
             }
         }
 

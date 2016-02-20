@@ -135,9 +135,9 @@ public class StaXParser(elementFactory: String) {
                 , psiGetMethod!!
                 , isCodeBlock!!.toBoolean()
                 , isRequired!!.toBoolean()
-                , addCode ?: ComponentSubtreeAdd(name!!, psiGetMethod!!, isEverywhereSuit.toBoolean(), null).toString()
-                , prepCode ?: ComponentSubtreePrep(name!!, null).toString()
-                , getCode ?: ComponentSubtreeGet(name!!, psiGetMethod!!, false, null, null).toString()
+                , addCode ?: ComponentSubtreeAdd(name, psiGetMethod, isEverywhereSuit.toBoolean(), null).toString()
+                , prepCode ?: ComponentSubtreePrep(name, null).toString()
+                , getCode ?: ComponentSubtreeGet(name, psiGetMethod, false, null, null).toString()
         )
     }
 

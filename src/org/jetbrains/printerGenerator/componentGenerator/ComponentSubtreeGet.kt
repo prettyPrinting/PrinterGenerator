@@ -18,8 +18,8 @@ public class ComponentSubtreeGet (
                 else                    { File("resources/generators/ComponentSubtreeGet.txt").readText() }
 
         val getParameterList = listOf(
-                Pair("@SUBTREE_GET@"    , psiSubtreeGet     ),
-                Pair("@NAME@"           , name              ),
+                Pair("@SUBTREE_GET@"    , psiSubtreeGet.decapitalize()),
+                Pair("@NAME@"           , name),
                 Pair("@FOLD_FUNCTION@"  , foldFunction ?: "")
         )
 

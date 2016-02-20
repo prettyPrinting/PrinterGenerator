@@ -62,7 +62,7 @@ public class Printer (
 
         val countTemplates = {
             acc: String, component: ComponentData ->
-                acc + "${component.name}.getTemplates().size() +\n"
+                acc + "            ${component.name}.getTemplates().size +\n"
         }
 
         val factoryCreate = {
