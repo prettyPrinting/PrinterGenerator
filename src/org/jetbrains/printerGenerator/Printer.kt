@@ -32,7 +32,7 @@ public class Printer (
         val compDecl = {
             acc: String, component: ComponentData ->
             acc +
-                    "public val ${component.name}: ${component.name?.capitalize()} = ${component.name?.capitalize()}(this)\n"
+                    "val ${component.name}: ${component.name?.capitalize()} = ${component.name?.capitalize()}(this)\n"
         }
 
         val applyTempl = {

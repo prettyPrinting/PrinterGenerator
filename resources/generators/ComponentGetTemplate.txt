@@ -1,4 +1,4 @@
-override public fun getTemplateFromElement(newP: @COMP_CLASS@): PsiTemplateGen<@COMP_CLASS@, SmartInsertPlace>? {
+override fun getTemplateFromElement(newP: @COMP_CLASS@): PsiTemplateGen<@COMP_CLASS@, SmartInsertPlace>? {
     val insertPlaceMap = HashMap<String, SmartInsertPlace>()
     val negShift = -newP.getCorrectTextOffset()
 

@@ -1,4 +1,4 @@
-override protected fun isTemplateSuitable(
+override fun isTemplateSuitable(
         p: @COMP_CLASS@
         , tmplt: PsiTemplateGen<@COMP_CLASS@, SmartInsertPlace>
 ): Boolean {

@@ -7,7 +7,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.0.0-beta-3595'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.0.0'
         classpath 'gradle.plugin.org.jetbrains:gradle-intellij-plugin:0.0.23'
         classpath 'de.undercouch:gradle-download-task:2.1.0'
     }
@@ -41,8 +41,8 @@ repositories {
 }
 
 dependencies {
-    compile 'org.jetbrains.kotlin:kotlin-stdlib:1.0.0-beta-3595'
-    compile 'org.jetbrains.kotlin:kotlin-runtime:1.0.0-beta-3595'
+    compile 'org.jetbrains.kotlin:kotlin-stdlib:1.0.0'
+    compile 'org.jetbrains.kotlin:kotlin-runtime:1.0.0'
     compile files('libs/format.jar')
     compile files('libs/printer-core.jar')
 }

@@ -24,14 +24,14 @@ class @LANG@Printer(
 , private val settings: PrinterSettings
 ): Printer(settings) {
     companion object {
-        public fun create(templateFile: PsiFile?, project: Project, width: Int): @LANG@Printer =
+        fun create(templateFile: PsiFile?, project: Project, width: Int): @LANG@Printer =
                 @LANG@Printer(templateFile, PrinterSettings.createProjectSettings(width, project))
     }
 
     //WARNING: must be declared before init!!!
     //COMPONENTS
     @COMP_DECLARATIONS@
-    public val @FILE_COMP_PASC@: @FILE_COMP@ = @FILE_COMP@(this)
+    val @FILE_COMP_PASC@: @FILE_COMP@ = @FILE_COMP@(this)
 
     init {
         if (templateFile != null) {
@@ -48,7 +48,7 @@ class @LANG@Printer(
         }
     }
 
-    override protected fun getTemplateVariants(p: PsiElement, context: VariantConstructionContext): FormatSet {
+    override fun getTemplateVariants(p: PsiElement, context: VariantConstructionContext): FormatSet {
         val variants: FormatSet =
             when(p) {
                 @GET_VARIANTS@
@@ -62,7 +62,7 @@ class @LANG@Printer(
         return variants
     }
 
-    override public fun fillTemplateLists(templateFile: PsiFile) {
+    override fun fillTemplateLists(templateFile: PsiFile) {
         areTemplatesFilled = true
         walker(templateFile, { p: PsiElement ->
             when (p) {
@@ -72,7 +72,7 @@ class @LANG@Printer(
         })
     }
 
-    override public fun createElementFromText(p: PsiElement, text: String): PsiElement? {
+    override fun createElementFromText(p: PsiElement, text: String): PsiElement? {
         val factory = @FACTORY@(getProject()) ?: return null
 
         return when (p) {
@@ -81,7 +81,7 @@ class @LANG@Printer(
         }
     }
 
-    override protected fun applyTmplt(p: PsiElement) {
+    override fun applyTmplt(p: PsiElement) {
         val formatSet = getVariants(p)
 
         val threadMXBean = ManagementFactory.getThreadMXBean()!!
