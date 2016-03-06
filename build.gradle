@@ -8,8 +8,7 @@ buildscript {
     }
     dependencies {
         classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.0.0'
-        classpath 'gradle.plugin.org.jetbrains:gradle-intellij-plugin:0.0.23'
-        classpath 'de.undercouch:gradle-download-task:2.1.0'
+        classpath 'gradle.plugin.org.jetbrains:gradle-intellij-plugin:0.0.42'
     }
 }
 
@@ -18,10 +17,9 @@ apply plugin: 'java'
 apply plugin: 'kotlin'
 apply plugin: 'application'
 apply plugin: 'org.jetbrains.intellij'
-apply plugin: 'de.undercouch.download'
 
 intellij {
-    version '15.0'
+    version '15.0.4'
     plugins 'kotlin'
 }
 
@@ -59,7 +57,7 @@ task downloadLibs {
         libs.mkdirs()
     }
     def fmt = new File("${projectDir}${File.separator}libs${File.separator}format.jar")
-    new URL('https://github.com/IgorOzernykh/printer-core/releases/download/1.0/format.jar')
+    new URL('https://github.com/IgorOzernykh/format/releases/download/1.5/format.jar')
             .withInputStream{ i -> fmt.withOutputStream{ it << i }}
     def core = new File("${projectDir}${File.separator}libs${File.separator}printer-core.jar")
     new URL('https://github.com/IgorOzernykh/printer-core/releases/download/1.0/printer-core.jar')
@@ -67,8 +65,10 @@ task downloadLibs {
 }
 
 task setup {
-    dependsOn downloadLibs, ideaModule, run
+    dependsOn downloadLibs, ideaModule
 }
+
+setup.finalizedBy(run)
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.5'
