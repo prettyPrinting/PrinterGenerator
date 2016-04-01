@@ -1,9 +1,9 @@
 override fun getNewElement(
-        text: String
+        p: @COMP_CLASS@
+        , text: String
 ): @COMP_CLASS@? {
     try {
-        val elementFactory = @ELEMENT_FACTORY@(printer.getProject())
-        val newP = elementFactory.create@FROM_TEXT@FromText(text)
+        val newP = printer.createElementFromText(p, text)
         return newP as? @COMP_CLASS@
     } catch (e: Exception) {
         return null
